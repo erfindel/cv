@@ -1,0 +1,8 @@
+{
+    "require": {
+        "silex/silex": "~1.1",
+        "twig/twig": "1.*",
+        "symfony/yaml": "~2.3",
+        "darklow/ff-silex-less-provider": "dev-master"
+    }
+}
