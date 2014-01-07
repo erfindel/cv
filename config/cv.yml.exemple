@@ -1,22 +1,5 @@
-Fastest CV
-===========
-
-A simple system for create a single page for display your CV to the world !
-
-
-Install
--------
-
-For install project : 
-    `$ composer update`
-
-After composer install,create file : `cv.yml` on new folder `/config`.
-
-the structure of cv.yml is : 
-
-Your information
------------------
->info:
+#Your information
+info:
     first_name: John
     last_name: Doe
     complete_name: Mister X
@@ -34,8 +17,7 @@ Your information
         Your long description
 
 
-Your professional Exprience
----------------------------
+#Your professional Exprience
 professional_experience:
     1:
         society: Google
@@ -58,12 +40,12 @@ professional_experience:
         job_description:
             1: Developping buisiness
             2: Talk to syndicat
-You can add all you want job_description, the key is useless !
-You can add too all you want profressional_experience, the key is useless  !
 
-Schooling:
-----------
-For schooling is same, you can add many degree if you want, just respect the archi !
+#You can add all you want job_description, the key is useless !
+#You can add too all you want profressional_experience, the key is useless  !
+
+#Schooling:
+#For schooling is same, you can add many degree if you want, just respect the archi !
 
 schooling:
     1:
@@ -73,9 +55,9 @@ schooling:
         date: 1970
 
 
-Competences:
-------------
-For this block, the key is important, but you can add as many skills as you want!
+#Competences:
+#For this block, the key is important, but you can add as many skills as you want!
+
 competences:
     Backend-dev:
         level: 80%
@@ -83,6 +65,3 @@ competences:
     Frontend:
         level: 70%
         description: Javacript / HTML / CSS
-        
-        
-*it's over !*
