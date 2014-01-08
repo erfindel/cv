@@ -8,7 +8,11 @@
         <div class="row">
             <div class="span12">
                 <div id="photo">
-                    <img src="img/avatar-Erfindel.jpg" width="186px">
+                    {% if cv['info']['photo'] %}
+                        <img src="{{ cv['info']['photo'] }}" width="186px">
+                    {% else %}
+                        <img src="img/user.png" width="186px">
+                    {% endif %}
                 </div>
                 <div id="data">
                     <table class="table" itemscope itemtype="http://schema.org/Person">
@@ -42,99 +46,120 @@
                         </table>
                 </div>
                 <div id="social">
-                    {#<a href="#" class="tooltip-test" data-original-title="Flickr"><img src="img/flickrpb.png"></a>#}
-                    <a href="{{ cv['info']['twitter'] }}" class="tooltip-test twitter" data-original-title="Twitter" target="_blank"></a>
-                    <a href="{{ cv['info']['facebook'] }}" class="tooltip-test facebook" data-original-title="Facebook" target="_blank"></a>
-                    <a href="{{ cv['info']['google+'] }}" class="tooltip-test google" data-original-title="Google +" target="_blank"></a>
+                    {% if cv['info']['flickr'] %}
+                        <a href="#" class="tooltip-test" data-original-title="Flickr"><img src="img/flickrpb.png"></a>
+                    {% endif %}
+                    {% if cv['info']['facebook'] %}
+                        <a href="{{ cv['info']['facebook'] }}" class="tooltip-test facebook" data-original-title="facebook" target="_blank"></a>
+                    {% endif %}
+                    {% if cv['info']['twitter'] %}
+                        <a href="{{ cv['info']['twitter'] }}" class="tooltip-test twitter" data-original-title="Twitter" target="_blank"></a>
+                    {% endif %}
+                    {% if cv['info']['google'] %}
+                        <a href="{{ cv['info']['google+'] }}" class="tooltip-test google" data-original-title="Google +" target="_blank"></a>
+                    {% endif %}
+                    {% if cv['info']['github'] %}
+                        <a href="{{ cv['info']['facebook'] }}" class="tooltip-test github" data-original-title="Facebook" target="_blank"></a>
+                    {% endif %}
                     <div href="#" class="tooltip-test myspace" data-original-title="My Space"></div>
                     <div href="#" class="tooltip-test youtube" data-original-title="Youtube"></div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="container well">
-        <div class="row">
-            <div class="span12">
-            {{ cv['info']['description'] }}
+    {% if cv['info']['description'] %}
+        <div class="container well">
+            <div class="row">
+                <div class="span12">
+                {{ cv['info']['description'] }}
+                </div>
             </div>
         </div>
-    </div>
-    <div class="container well">
-        <div class="row">
-            <div class="span4">
-                <h2>Compétences techniques</h2>
-           </div>
-            <div class="span8 detail">
-                {% for competence, info in cv['competences'] %}
-                    <div class="row">
-                        <div class="span8">
-                            <h3 style="float:left; min-width: 50%;">{{ competence }}</h3>
-                            <div class="progress progress-info">
-                                <div class="bar" style="width: {{ info['level'] }};"></div>
+    {% endif %}
+    {% if cv['competences'] %}
+        <div class="container well">
+            <div class="row">
+                <div class="span4">
+                    <h2>Compétences techniques</h2>
+               </div>
+                <div class="span8 detail">
+                    {% for competence, info in cv['competences'] %}
+                        <div class="row">
+                            <div class="span8">
+                                <h3 style="float:left; min-width: 50%;">{{ competence }}</h3>
+                                <div class="progress progress-info">
+                                    <div class="bar" style="width: {{ info['level'] }};"></div>
+                                </div>
+                                <div style="clear:both; color:#999999;">
+                                    {{ info['description'] }}
+                                </div>
                             </div>
-                            <div style="clear:both; color:#999999;">
-                                {{ info['description'] }}
+                        </div>
+                        {% if not loop.last %}
+                            <hr>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+           </div>
+        </div>
+    {% endif %}
+
+    {% if cv['professional_experience'] %}
+        <div class="container well">
+            <div class="row">
+                <div class="span4">
+                    <h2>Expérience professionelles</h2>
+               </div>
+                <div class="span8">
+                    {% for experiences in cv['professional_experience'] %}
+                        <div class="row detail">
+                            <div class="span4">
+                                <h3>{{ experiences['job'] }}</h3>
+                                <a href="{{ experiences['website'] }}" title="{{ experiences['society'] }}" target="_blank"><h6>{{ experiences['society'] }}</h6></a>
+                                <p style="margin-top:20px;">
+                                    {{ experiences['date_start'] }} - {{ experiences['date_end'] }}
+                                </p>
+                            </div>
+                            <div class="span4">
+                                {% for job in experiences['job_description'] %}
+                                    <ul>
+                                        <li>{{ job }}</li>
+                                    </ul>
+                                {% endfor %}
                             </div>
                         </div>
-                    </div>
-                    {% if not loop.last %}
-                        <hr>
-                    {% endif %}
-                {% endfor %}
-            </div>
-       </div>
-    </div>
-    <div class="container well">
-        <div class="row">
-            <div class="span4">
-                <h2>Expérience professionelles</h2>
+                        {% if not loop.last %}
+                            <hr>
+                        {% endif %}
+                    {% endfor %}
+                </div>
            </div>
-            <div class="span8">
-                {% for experiences in cv['professional_experience'] %}
-                    <div class="row detail">
-                        <div class="span4">
-                            <h3>{{ experiences['job'] }}</h3>
-                            <a href="{{ experiences['website'] }}" title="{{ experiences['society'] }}"><h6>{{ experiences['society'] }}</h6></a>
-                            <p style="margin-top:20px;">
-                                {{ experiences['date_start'] }} - {{ experiences['date_end'] }}
-                            </p>
+        </div>
+    {% endif %}
+
+    {% if cv['schooling'] %}
+        <div class="container well">
+            <div class="row">
+                <div class="span4">
+                    <h2>Parcours scolaire</h2>
+               </div>
+                <div class="span8">
+                    {% for schooling in cv['schooling'] %}
+                        <div class="row detail">
+                            <div class="span8">
+                                <h3>{{ schooling['degree'] }}</h3>
+                                <h6>{{ schooling['school_name'] }} - {{ schooling['school_city'] }}</h6>
+                                <p style="margin-top:20px;">
+                                    {{ schooling['date'] }}
+                                </p>
+                            </div>
                         </div>
-                        <div class="span4">
-                            {% for job in experiences['job_description'] %}
-                                <ul>
-                                    <li>{{ job }}</li>
-                                </ul>
-                            {% endfor %}
-                        </div>
-                    </div>
-                    {% if not loop.last %}
-                        <hr>
-                    {% endif %}
-                {% endfor %}
-            </div>
-       </div>
-    </div>
-    <div class="container well">
-        <div class="row">
-            <div class="span4">
-                <h2>Parcours scolaire</h2>
+                        {% if not loop.last %}
+                            <hr>
+                        {% endif %}
+                    {% endfor %}
+                </div>
            </div>
-            <div class="span8">
-                {% for schooling in cv['schooling'] %}
-                    <div class="row detail">
-                        <div class="span8">
-                            <h3>{{ schooling['degree'] }}</h3>
-                            <h6>{{ schooling['school_name'] }} - {{ schooling['school_city'] }}</h6>
-                            <p style="margin-top:20px;">
-                                {{ schooling['date'] }}
-                            </p>
-                        </div>
-                    </div>
-                    {% if not loop.last %}
-                        <hr>
-                    {% endif %}
-                {% endfor %}
-            </div>
        </div>
-   </div>
+   {% endif %}
 {% endblock %}
