@@ -8,7 +8,7 @@ Install
 -------
 
 For install project : 
-    `$ composer update`
+    `$ composer install`
 
 After composer install, create file : `cv.yml`.
 
