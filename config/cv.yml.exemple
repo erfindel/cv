@@ -13,6 +13,9 @@ info:
     facebook: Your facebook
     twitter: Your twitter
     google+: Your Google+
+    github: https://github.com/erfindel
+    flickr: Your account flickr
+    photo : img/user.png
     description: >
         Your long description
 
@@ -27,9 +30,9 @@ professional_experience:
         job: CEO
         society_description: search motor
         job_description:
-            1: Leader on the web
-            2: Numero Uno !
-            3: The Google's kitchen is amazing !
+            - Leader on the web
+            - Numero Uno !
+            - The Google's kitchen is amazing !
     2:
         society: Amazon
         website: http://www.amazon.com
@@ -38,8 +41,8 @@ professional_experience:
         job: CEO
         society_description: The largest book retailer
         job_description:
-            1: Developping buisiness
-            2: Talk to syndicat
+            - Developping buisiness
+            - Talk to syndicat
 
 #You can add all you want job_description, the key is useless !
 #You can add too all you want profressional_experience, the key is useless  !
