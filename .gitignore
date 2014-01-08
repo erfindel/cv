@@ -1,4 +1,4 @@
 web/css/extras.css
 vendor/
 config/cv.yml
-img/*
+web/img/*
