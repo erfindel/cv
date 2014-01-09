@@ -163,3 +163,9 @@
        </div>
    {% endif %}
 {% endblock %}
+
+{% if cv['info']['analytics'] %}
+    {% block analytics %}
+        <script>{{ cv['info']['analytics']|raw }}</script>
+    {% endblock %}
+{% endif %}
