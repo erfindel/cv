@@ -9,7 +9,7 @@
             <div class="span12">
                 <div id="photo">
                     {% if cv['info']['photo'] %}
-                        <img src="{{ cv['info']['photo'] }}" width="186px" alt="{{ cv['info']['complete_name'] }}">
+                        <img src="{{ cv['info']['photo'] }}" width="186" alt="{{ cv['info']['complete_name'] }}">
                     {% else %}
                         <img src="img/user.png" width="186px" alt="{{ cv['info']['complete_name'] }}">
                     {% endif %}
@@ -29,7 +29,7 @@
                               <td><h3>Adresse</h3></td>
                               <td itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
                                 <span itemprop="streetAddress">{{ cv['info']['adress'] }}</span>
-                                <span itemprop="addressLocality">{{ cv['info']['postal_code'] }} {{ cv['info']['city'] }}</spa>
+                                <span itemprop="addressLocality">{{ cv['info']['postal_code'] }} {{ cv['info']['city'] }}</span>
                               </td>
                             </tr>
                             <tr>
@@ -61,8 +61,8 @@
                     {% if cv['info']['github'] %}
                         <a href="{{ cv['info']['facebook'] }}" class="tooltip-test github" data-original-title="Facebook" target="_blank"></a>
                     {% endif %}
-                    <div href="#" class="tooltip-test myspace" data-original-title="My Space"></div>
-                    <div href="#" class="tooltip-test youtube" data-original-title="Youtube"></div>
+                    <div class="tooltip-test myspace" data-original-title="My Space"></div>
+                    <div class="tooltip-test youtube" data-original-title="Youtube"></div>
                 </div>
             </div>
         </div>
