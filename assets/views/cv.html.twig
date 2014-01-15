@@ -9,9 +9,9 @@
             <div class="span12">
                 <div id="photo">
                     {% if cv['info']['photo'] %}
-                        <img src="{{ cv['info']['photo'] }}" width="186px">
+                        <img src="{{ cv['info']['photo'] }}" width="186px" alt="{{ cv['info']['complete_name'] }}">
                     {% else %}
-                        <img src="img/user.png" width="186px">
+                        <img src="img/user.png" width="186px" alt="{{ cv['info']['complete_name'] }}">
                     {% endif %}
                 </div>
                 <div id="data">
