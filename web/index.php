@@ -20,11 +20,8 @@ $app->register(new Silex\Provider\TwigServiceProvider(), array(
 $app->register(new LessServiceProvider(), array(
     'less.sources'     => array(__DIR__.'/../assets/less/style.less'), // specify one or serveral .less files
     'less.target'      => __DIR__.'/css/extras.css', // specify .css target file
-    'less.formatter'      => LessServiceProvider::FORMATTER_COMPRESSED,
+    'less.formatter'   => LessServiceProvider::FORMATTER_COMPRESSED,
 ));
-
-
-
 
 $app->get('/', function () use ($app, $cv) {
     return $app['twig']->render('cv.html.twig', array(

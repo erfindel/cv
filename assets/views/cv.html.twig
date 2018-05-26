@@ -18,23 +18,23 @@
                     <table class="table" itemscope itemtype="http://schema.org/Person">
                           <tbody>
                             <tr>
-                              <td><h3>Nom</h3></td>
+                              <td><h3>Name</h3></td>
                               <td><h1 itemprop="name">{{ cv['info']['complete_name'] }}</h1></td>
                             </tr>
                             <tr>
-                              <td><h3>Né le</h3></td>
+                              <td><h3>Birthday</h3></td>
                               <td itemprop="birthDate">{{ cv['info']['birth_date'] }}</td>
                             </tr>
                             <tr>
-                              <td><h3>Adresse</h3></td>
+                              <td><h3>Address</h3></td>
                               <td itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
-                                <span itemprop="streetAddress">{{ cv['info']['adress'] }}</span>
+                                <span itemprop="streetAddress">{{ cv['info']['address'] }}</span>
                                 <span itemprop="addressLocality">{{ cv['info']['postal_code'] }} {{ cv['info']['city'] }}</span>
                               </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <h3>Téléphone</h3>
+                                    <h3>Phone number</h3>
                                 </td>
                                 <td itemprop="telephone">{{ cv['info']['phone_number'] }}</td>
                             </tr>
@@ -46,21 +46,22 @@
                         </table>
                 </div>
                 <div id="social">
+                    {% if cv['info']['github'] %}
+                        <a href="{{ cv['info']['github'] }}" class="tooltip-test github" data-original-title="Facebook" target="_blank"></a>
+                    {% endif %}
+                    {% if cv['info']['twitter'] %}
+                        <a href="{{ cv['info']['twitter'] }}" class="tooltip-test twitter" data-original-title="Twitter" target="_blank"></a>
+                    {% endif %}
                     {% if cv['info']['flickr'] %}
                         <a href="#" class="tooltip-test" data-original-title="Flickr"><img src="img/flickrpb.png"></a>
                     {% endif %}
                     {% if cv['info']['facebook'] %}
                         <a href="{{ cv['info']['facebook'] }}" class="tooltip-test facebook" data-original-title="facebook" target="_blank"></a>
                     {% endif %}
-                    {% if cv['info']['twitter'] %}
-                        <a href="{{ cv['info']['twitter'] }}" class="tooltip-test twitter" data-original-title="Twitter" target="_blank"></a>
-                    {% endif %}
                     {% if cv['info']['google'] %}
                         <a href="{{ cv['info']['google+'] }}" class="tooltip-test google" data-original-title="Google +" target="_blank"></a>
                     {% endif %}
-                    {% if cv['info']['github'] %}
-                        <a href="{{ cv['info']['github'] }}" class="tooltip-test github" data-original-title="Facebook" target="_blank"></a>
-                    {% endif %}
+
                     <div class="tooltip-test myspace" data-original-title="My Space"></div>
                     <div class="tooltip-test youtube" data-original-title="Youtube"></div>
                 </div>
@@ -71,7 +72,7 @@
         <div class="container well">
             <div class="row">
                 <div class="span12">
-                {{ cv['info']['description'] }}
+                {{ cv['info']['description']|raw }}
                 </div>
             </div>
         </div>
@@ -80,7 +81,7 @@
         <div class="container well">
             <div class="row">
                 <div class="span4">
-                    <h2>Compétences techniques</h2>
+                    <h2>Technical skills</h2>
                </div>
                 <div class="span8 detail">
                     {% for competence, info in cv['competences'] %}
@@ -104,12 +105,26 @@
         </div>
     {% endif %}
 
+    {% if cv['keywords'] %}
+        <div class="container well">
+            <div class="row">
+                <div class="span4">
+                    <h2>Keywords</h2>
+               </div>
+                <div class="span8">
+                    {% for keyword in cv['keywords'] %}
+                        <span>{{ keyword }}</span>
+                    {% endfor %}
+                </div>
+           </div>
+        </div>
+    {% endif %}
     {% if cv['professional_experience'] %}
         <div class="container well">
             <div class="row">
                 <div class="span4">
                     <h2>Expériences professionelles</h2>
-               </div>
+                </div>
                 <div class="span8">
                     {% for experiences in cv['professional_experience'] %}
                         <div class="row detail">
@@ -133,24 +148,25 @@
                         {% endif %}
                     {% endfor %}
                 </div>
-           </div>
+            </div>
         </div>
     {% endif %}
 
-    {% if cv['schooling'] %}
+
+    {% if cv['education'] %}
         <div class="container well">
             <div class="row">
                 <div class="span4">
-                    <h2>Parcours scolaire</h2>
+                    <h2>Education</h2>
                </div>
                 <div class="span8">
-                    {% for schooling in cv['schooling'] %}
+                    {% for education in cv['education'] %}
                         <div class="row detail">
                             <div class="span8">
-                                <h3>{{ schooling['degree'] }}</h3>
-                                <h6>{{ schooling['school_name'] }} - {{ schooling['school_city'] }}</h6>
+                                <h3>{{ education['degree'] }}</h3>
+                                <h6>{{ education['school_name'] }} - {{ education['school_city'] }}</h6>
                                 <p style="margin-top:20px;">
-                                    {{ schooling['date'] }}
+                                    {{ education['date'] }}
                                 </p>
                             </div>
                         </div>
@@ -161,7 +177,26 @@
                 </div>
            </div>
        </div>
-   {% endif %}
+    {% endif %}
+
+    {% if cv['languages'] %}
+        <div class="container well">
+            <div class="row">
+                <div class="span4">
+                    <h2>Languages</h2>
+                </div>
+                <div class="span8 detail">
+                    {% for laguages, level in cv['languages'] %}
+                        <div class="row">
+                            <div class="span2">
+                                <b>{{ laguages }}</b>: {{ level }}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    {% endif %}
 {% endblock %}
 
 {% if cv['info']['analytics'] %}
