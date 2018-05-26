@@ -77,14 +77,14 @@
             </div>
         </div>
     {% endif %}
-    {% if cv['competences'] %}
+    {% if cv['skills'] %}
         <div class="container well">
             <div class="row">
                 <div class="span4">
                     <h2>Technical skills</h2>
                </div>
                 <div class="span8 detail">
-                    {% for competence, info in cv['competences'] %}
+                    {% for competence, info in cv['skills'] %}
                         <div class="row">
                             <div class="span8">
                                 <h3 style="float:left; min-width: 50%;">{{ competence }}</h3>
@@ -123,7 +123,7 @@
         <div class="container well">
             <div class="row">
                 <div class="span4">
-                    <h2>Expériences professionelles</h2>
+                    <h2>Professional Experience</h2>
                 </div>
                 <div class="span8">
                     {% for experiences in cv['professional_experience'] %}
